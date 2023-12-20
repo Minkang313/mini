@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, tr, td, th {
+            border: black solid 1px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>게시판 연습 1</h1>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="board : ${board1Map.board1List}">
+                    <td th:text="${board.id}"></td>
+                    <td th:text="${board.title}"></td>
+                    <td th:text="${board.user_id}"></td>
+                    <td th:text="${board.rdate}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
