@@ -9,4 +9,6 @@ import java.util.Map;
 public interface PracMapper {
 
     List<Map<String, Object>> getBoard1List();
+
+    Map<String, Object> getBoardDetail(int boardId);
 }

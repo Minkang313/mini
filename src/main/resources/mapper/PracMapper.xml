@@ -16,4 +16,22 @@
         order by id DESC
         limit 10 offset 0
     </select>
+
+    <select id="getBoardDetail" resultType="hashMap">
+        -- "getBoardDetail" : 게시글 상세 조회
+        SELECT
+            id,
+            title,
+            "content",
+            view_cnt,
+            rdate,
+            user_id,
+            use_yn
+        FROM
+            board.board1 b
+        WHERE
+            use_yn = 'Y'
+            AND
+            id = #{boardId}
+    </select>
 </mapper>

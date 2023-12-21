@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -24,8 +25,21 @@ public class PracController {
         Map<String, Object> board1Map = pracService.getBoard1List();
         model.addAttribute("board1Map", board1Map);
 
-        return "prac/board1";
+        return "prac/board1/board1";
     }
 
+    @RequestMapping("/boardDetail.do")
+    public String board1Detail(@RequestParam(value = "id") int id, Model model){
 
+        Map<String, Object> boardDetail = pracService.getBoardDetail(id);
+        model.addAttribute("boardDetail", boardDetail);
+
+        return "prac/board1/board1Detail";
+    }
+
+    @RequestMapping("/addBoard1.do")
+    public String addboard1(){
+
+        return "prac/board1/addBoard1";
+    }
 }
