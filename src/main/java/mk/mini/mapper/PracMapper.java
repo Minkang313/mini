@@ -11,4 +11,6 @@ public interface PracMapper {
     List<Map<String, Object>> getBoard1List();
 
     Map<String, Object> getBoardDetail(int boardId);
+
+    int insertBoard1(Map<String, Object> param);
 }

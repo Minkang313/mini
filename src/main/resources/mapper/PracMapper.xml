@@ -34,4 +34,13 @@
             AND
             id = #{boardId}
     </select>
+
+    <select id="insertBoard1" resultType="int">
+        -- "insertBoard1" : 게시글 작성
+        INSERT INTO board.board1
+            (title, content, view_cnt, rdate, user_id, use_yn)
+            VALUES
+            (#{title}, #{content}, 0, NOW(), 'admin', 'Y')
+        returning id
+    </select>
 </mapper>

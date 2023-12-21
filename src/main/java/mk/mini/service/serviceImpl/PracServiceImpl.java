@@ -31,8 +31,18 @@ public class PracServiceImpl implements PracService {
      * @return
      */
     @Override
-    public Map<String, Object> getBoardDetail(int boardId) {
+    public Map<String, Object> getBoard1Detail(int boardId) {
 
         return pracMapper.getBoardDetail(boardId);
+    }
+
+    /**
+     * 게시글 추가
+     * @param param
+     * @return
+     */
+    @Override
+    public int insertBoard1(Map<String, Object> param) {
+        return pracMapper.insertBoard1(param);
     }
 }
