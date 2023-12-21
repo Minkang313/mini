@@ -7,7 +7,9 @@
         table, tr, td, th {
             border: black solid 1px;
         }
-
+        tr{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -23,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="board : ${board1Map.board1List}">
+                <tr th:each="board : ${board1Map.board1List}" th:onclick="|location.href='@{/prac/boardDetail.do(id=${board.id})}'|">
                     <td th:text="${board.id}"></td>
                     <td th:text="${board.title}"></td>
                     <td th:text="${board.user_id}"></td>
@@ -31,6 +33,7 @@
                 </tr>
             </tbody>
         </table>
+        <button th:onclick="|location.href='@{/prac/addBoard1.do}'|">작성</button>
     </div>
 </body>
 </html>

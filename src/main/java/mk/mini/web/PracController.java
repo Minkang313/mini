@@ -4,7 +4,9 @@ import mk.mini.service.PracService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -24,8 +26,43 @@ public class PracController {
         Map<String, Object> board1Map = pracService.getBoard1List();
         model.addAttribute("board1Map", board1Map);
 
-        return "prac/board1";
+        return "prac/board1/board1";
     }
 
+    @RequestMapping("/boardDetail.do")
+    public String board1Detail(@RequestParam(value = "id") int id, Model model){
+
+        Map<String, Object> boardDetail = pracService.getBoard1Detail(id);
+        model.addAttribute("boardDetail", boardDetail);
+
+        return "prac/board1/board1Detail";
+    }
+
+    /**
+     * 게시판 추가 화면
+     * @return
+     */
+    @RequestMapping("/addBoard1.do")
+    public String addboard1(){
+
+        return "prac/board1/addBoard1";
+    }
+
+    /**
+     * 게시글 추가
+     * @param param
+     * @return
+     */
+    @PostMapping("/addBoardPro.do")
+    public String addBoardPro(@RequestParam Map<String, Object> param, Model model){
+        int boardId = pracService.insertBoard1(param);
+        if (boardId != 0) {
+            model.addAttribute("msg", "게시글 작성에 성공했습니다.");
+            return "redirect:/prac/boardDetail.do?id=" + boardId;
+        } else {
+            model.addAttribute("msg", "게시글 작성에 실패했습니다.");
+            return "redirect:/prac/addBoard1.do";
+        }
+    }
 
 }

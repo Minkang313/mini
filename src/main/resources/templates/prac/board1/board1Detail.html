@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, tr, td {
+            border: black solid 1px;
+        }
+        .textTd {
+            width: 200px;
+            height: 30px;
+        }
+        table {
+            text-align: center;
+        }
+        #contentArea{
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <table>
+        <tbody>
+            <tr>
+                <td>No</td>
+                <td th:text="${boardDetail.id}" class="textTd"></td>
+            </tr>
+            <tr>
+                <td>조회수</td>
+                <td th:text="${boardDetail.view_cnt}" class="textTd"></td>
+            </tr>
+            <tr>
+                <td>작성자</td>
+                <td th:text="${boardDetail.user_id}" class="textTd"></td>
+            </tr>
+            <tr>
+                <td>작성날짜</td>
+                <td th:text="${boardDetail.rdate}" class="textTd"></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td th:text="${boardDetail.title}" class="textTd"></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td th:text="${boardDetail.content}" class="textTd" id="contentArea"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button th:onclick="|location.href='@{/prac/board1.do(curPage=${1})}'|">목록</button>
+</div>
+</body>
+</html>
