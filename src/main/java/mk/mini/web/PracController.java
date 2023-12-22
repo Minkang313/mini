@@ -38,6 +38,7 @@ public class PracController {
     @RequestMapping("/boardDetail.do")
     public String board1Detail(@RequestParam(value = "id") int id, Model model){
 
+        pracService.plusViewCnt(id);
         Map<String, Object> boardDetail = pracService.getBoard1Detail(id);
         model.addAttribute("boardDetail", boardDetail);
 

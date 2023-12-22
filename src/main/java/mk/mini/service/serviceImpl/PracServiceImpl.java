@@ -55,4 +55,14 @@ public class PracServiceImpl implements PracService {
     public int updateboard1(Map<String, Object> param) {
         return pracMapper.updateboard1(param);
     }
+
+    /**
+     * 조회수 1 증가
+     * @param boardId
+     * @return
+     */
+    @Override
+    public int plusViewCnt(int boardId){
+        return pracMapper.plusViewCnt(boardId);
+    }
 }

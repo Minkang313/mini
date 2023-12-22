@@ -54,4 +54,14 @@
         WHERE
             id = #{id}::Integer
     </update>
+
+    <update id="plusViewCnt">
+        -- "plusViewCnt" : 조회수 1 증가
+        UPDATE
+            board.board1
+        SET
+            view_cnt = view_cnt + 1
+        WHERE
+            id = #{id}::Integer
+    </update>
 </mapper>
