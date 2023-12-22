@@ -13,4 +13,10 @@ public interface PracMapper {
     Map<String, Object> getBoardDetail(int boardId);
 
     int insertBoard1(Map<String, Object> param);
+
+    int updateboard1(Map<String, Object> param);
+
+    int plusViewCnt(int boardId);
+
+    int deleteBoard1(int boardId);
 }

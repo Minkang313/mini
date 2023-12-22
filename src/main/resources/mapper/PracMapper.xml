@@ -43,4 +43,33 @@
             (#{title}, #{content}, 0, NOW(), 'admin', 'Y')
         returning id
     </select>
+
+    <update id="updateboard1">
+        -- "updateboard1" : 게시글 수정
+        UPDATE
+            board.board1
+        SET
+            title = #{title},
+            content = #{content}
+        WHERE
+            id = #{id}::Integer
+    </update>
+
+    <update id="plusViewCnt">
+        -- "plusViewCnt" : 조회수 1 증가
+        UPDATE
+            board.board1
+        SET
+            view_cnt = view_cnt + 1
+        WHERE
+            id = #{id}::Integer
+    </update>
+
+    <delete id="deleteBoard1">
+        -- "deleteBoard1" : 게시글 삭제
+        DELETE
+        FROM board.board1
+        WHERE
+            id = #{id}
+    </delete>
 </mapper>

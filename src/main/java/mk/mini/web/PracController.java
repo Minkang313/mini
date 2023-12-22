@@ -29,9 +29,16 @@ public class PracController {
         return "prac/board1/board1";
     }
 
+    /**
+     * 게시글 상세 조회
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping("/boardDetail.do")
     public String board1Detail(@RequestParam(value = "id") int id, Model model){
 
+        pracService.plusViewCnt(id);
         Map<String, Object> boardDetail = pracService.getBoard1Detail(id);
         model.addAttribute("boardDetail", boardDetail);
 
@@ -65,4 +72,56 @@ public class PracController {
         }
     }
 
+    /**
+     * 수정 페이지로 이동
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping("/updateBoard1.do")
+    public String updateBoard1(@RequestParam(value = "id") int id, Model model){
+        Map<String, Object> boardDetail = pracService.getBoard1Detail(id);
+        model.addAttribute("boardDetail", boardDetail);
+
+        return "prac/board1/updateBoard1";
+    }
+
+    /**
+     * 게시글 수정
+     * @param param
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/updateBoard1Pro.do")
+    public String updateBoard1Pro(@RequestParam Map<String, Object> param, Model model){
+
+        int boardId = Integer.parseInt((String) param.get("id"));
+        int result = pracService.updateboard1(param);
+
+        if(result == 1){
+            model.addAttribute("msg", "게시글 수정에 성공했습니다.");
+            return "redirect:/prac/boardDetail.do?id=" + boardId;
+        } else {
+            model.addAttribute("msg", "게시글 수정에 실패했습니다.");
+            return "redirect:/prac/updateBoard1.do?id=" + boardId;
+        }
+    }
+
+    /**
+     * 게시글 삭제
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/deleteBoard1.do")
+    public String deleteBoard1(@RequestParam(value = "id") int id, Model model){
+
+        int result = pracService.deleteBoard1(id);
+        if (result == 1) {
+            model.addAttribute("msg", "삭제에 성공했습니다.");
+            return "redirect:/prac/board1.do";
+        } else {
+            return "redirect:/prac/boardDetail.do?id=" + id;
+        }
+    }
 }

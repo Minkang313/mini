@@ -1,24 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        table, tr, td {
+            border: black solid 1px;
+        }
+        .textTd {
+            width: 200px;
+            height: 30px;
+        }
+        table {
+            text-align: center;
+        }
+        .contentArea{
+            height: 200px;
+        }
+    </style>
 </head>
 <body>
 <div>
     <form method="POST" action="/prac/addBoardPro.do">
         <table>
-            <tr>
+            <tr class="textTd">
                 <td>제목</td>
                 <td><label><input type="text" placeholder="제목" name="title"></label></td>
             </tr>
-            <tr>
+            <tr class="contentArea">
                 <td>내용</td>
-                <td><label><textarea placeholder="내용" name="content"></textarea></label></td>
+                <td><label><textarea placeholder="내용" name="content" class="contentArea"></textarea></label></td>
             </tr>
 
         </table>
-        <button>저장</button>
+        <div style="margin-left: 130px;">
+            <button>저장</button>
+            <button type="button" th:onclick="|location.href='@{/prac/board1.do}'|">취소</button>
+        </div>
     </form>
 </div>
 </body>
