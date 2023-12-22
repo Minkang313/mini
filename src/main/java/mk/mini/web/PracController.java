@@ -105,7 +105,23 @@ public class PracController {
             model.addAttribute("msg", "게시글 수정에 실패했습니다.");
             return "redirect:/prac/updateBoard1.do?id=" + boardId;
         }
+    }
 
+    /**
+     * 게시글 삭제
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/deleteBoard1.do")
+    public String deleteBoard1(@RequestParam(value = "id") int id, Model model){
 
+        int result = pracService.deleteBoard1(id);
+        if (result == 1) {
+            model.addAttribute("msg", "삭제에 성공했습니다.");
+            return "redirect:/prac/board1.do";
+        } else {
+            return "redirect:/prac/boardDetail.do?id=" + id;
+        }
     }
 }

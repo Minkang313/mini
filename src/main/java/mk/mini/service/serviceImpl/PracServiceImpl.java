@@ -65,4 +65,14 @@ public class PracServiceImpl implements PracService {
     public int plusViewCnt(int boardId){
         return pracMapper.plusViewCnt(boardId);
     }
+
+    /**
+     * 게시글 삭제
+     * @param boardId
+     * @return
+     */
+    @Override
+    public int deleteBoard1(int boardId) {
+        return pracMapper.deleteBoard1(boardId);
+    }
 }

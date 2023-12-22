@@ -49,11 +49,19 @@
             </tr>
         </tbody>
     </table>
-    <div style="margin-left: 185px;">
+    <div style="margin-left: 140px;">
         <button th:onclick="|location.href='@{/prac/updateBoard1.do(id=${boardDetail.id})}'|">수정</button>
+        <button th:onclick="|deleteBoard(${boardDetail.id})|">삭제</button>
         <button th:onclick="|location.href='@{/prac/board1.do(curPage=${1})}'|">목록</button>
     </div>
-
 </div>
+
+<script>
+    const deleteBoard = (id) => {
+        if (confirm('게시글을 삭제하시겠습니까?')) {
+            location.href = "/prac/deleteBoard1.do?id=" + id;
+        }
+    }
+</script>
 </body>
 </html>

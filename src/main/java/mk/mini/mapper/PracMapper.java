@@ -17,4 +17,6 @@ public interface PracMapper {
     int updateboard1(Map<String, Object> param);
 
     int plusViewCnt(int boardId);
+
+    int deleteBoard1(int boardId);
 }
