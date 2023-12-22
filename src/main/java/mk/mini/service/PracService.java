@@ -9,4 +9,6 @@ public interface PracService {
     Map<String, Object> getBoard1Detail(int boardId);
 
     int insertBoard1(Map<String, Object> param);
+
+    int updateboard1(Map<String, Object> param);
 }

@@ -14,26 +14,30 @@
         table {
             text-align: center;
         }
-        #contentArea{
+        .contentArea{
             height: 200px;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
 <div>
-    <table>
-        <tbody>
+    <form action="/prac/updateBoard1Pro.do" method="post">
+        <table>
             <tr>
                 <td>No</td>
                 <td th:text="${boardDetail.id}" class="textTd"></td>
-            </tr>
-            <tr>
-                <td>조회수</td>
-                <td th:text="${boardDetail.view_cnt}" class="textTd"></td>
+                <td class="hidden"><input th:value="${boardDetail.id}" name="id"></td>
             </tr>
             <tr>
                 <td>작성자</td>
                 <td th:text="${boardDetail.user_id}" class="textTd"></td>
+            </tr>
+            <tr>
+                <td>조회수</td>
+                <td th:text="${boardDetail.view_cnt}" class="textTd"></td>
             </tr>
             <tr>
                 <td>작성날짜</td>
@@ -41,19 +45,22 @@
             </tr>
             <tr>
                 <td>제목</td>
-                <td th:text="${boardDetail.title}" class="textTd"></td>
+                <td class="textTd"><label>
+                    <input th:value="${boardDetail.title}" name="title">
+                </label></td>
             </tr>
             <tr>
                 <td>내용</td>
-                <td th:text="${boardDetail.content}" class="textTd" id="contentArea"></td>
+                <td class="contentArea"><label>
+                    <textarea th:text="${boardDetail.content}" class="contentArea" name="content"></textarea>
+                </label></td>
             </tr>
-        </tbody>
-    </table>
-    <div style="margin-left: 185px;">
-        <button th:onclick="|location.href='@{/prac/updateBoard1.do(id=${boardDetail.id})}'|">수정</button>
-        <button th:onclick="|location.href='@{/prac/board1.do(curPage=${1})}'|">목록</button>
-    </div>
-
+        </table>
+        <div style="margin-left: 185px;">
+            <button>저장</button>
+            <button type="button" th:onclick="|location.href='@{/prac/boardDetail.do(id=${boardDetail.id})}'|">취소</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>

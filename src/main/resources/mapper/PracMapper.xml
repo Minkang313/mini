@@ -43,4 +43,15 @@
             (#{title}, #{content}, 0, NOW(), 'admin', 'Y')
         returning id
     </select>
+
+    <update id="updateboard1">
+        -- "updateboard1" : 게시글 수정
+        UPDATE
+            board.board1
+        SET
+            title = #{title},
+            content = #{content}
+        WHERE
+            id = #{id}::Integer
+    </update>
 </mapper>

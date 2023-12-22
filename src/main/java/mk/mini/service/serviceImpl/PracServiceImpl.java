@@ -45,4 +45,14 @@ public class PracServiceImpl implements PracService {
     public int insertBoard1(Map<String, Object> param) {
         return pracMapper.insertBoard1(param);
     }
+
+    /**
+     * 게시글 수정
+     * @param param
+     * @return
+     */
+    @Override
+    public int updateboard1(Map<String, Object> param) {
+        return pracMapper.updateboard1(param);
+    }
 }
