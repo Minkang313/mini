@@ -57,6 +57,13 @@
 </div>
 
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let msg = "[[${msg}]]";
+        if (msg !== '') {
+            alert(msg)
+        }
+    })
+
     const deleteBoard = (id) => {
         if (confirm('게시글을 삭제하시겠습니까?')) {
             location.href = "/prac/deleteBoard1.do?id=" + id;
