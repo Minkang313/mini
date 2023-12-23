@@ -37,5 +37,14 @@
             <button th:onclick="|location.href='@{/prac/addBoard1.do}'|">작성</button>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let msg = "[[${msg}]]";
+            if (msg !== '') {
+                alert(msg)
+            }
+        })
+    </script>
 </body>
 </html>
