@@ -17,6 +17,31 @@
         limit 10 offset 0
     </select>
 
+    <select id="getBoard1Cnt">
+        -- "getBoard1Cnt" : 게시글 목록 조회
+        SELECT
+            COUNT(*)
+        FROM
+            board.board1
+        WHERE
+            1 = 1
+        <choose>
+            <when test="searchKey == '제목'">
+                AND
+                title like '%'||#{searchVal}||'%'
+            </when>
+            <when test="searchKey == '내용'">
+                AND
+                content like '%'||#{searchVal}||'%'
+            </when>
+            <otherwise>
+                AND
+                (title like '%'||#{searchVal}||'%' OR content like '%'||#{searchVal}||'%')
+            </otherwise>
+        </choose>
+
+    </select>
+
     <select id="getBoardDetail" resultType="hashMap">
         -- "getBoardDetail" : 게시글 상세 조회
         SELECT

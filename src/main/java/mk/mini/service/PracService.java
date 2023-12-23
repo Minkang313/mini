@@ -4,7 +4,7 @@ import java.util.Map;
 
 public interface PracService {
 
-    Map<String, Object> getBoard1List();
+    Map<String, Object> getBoard1List(Map<String, Object> param);
 
     Map<String, Object> getBoard1Detail(int boardId);
 

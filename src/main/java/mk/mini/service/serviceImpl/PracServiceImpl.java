@@ -18,12 +18,25 @@ public class PracServiceImpl implements PracService {
      * @return
      */
     @Override
-    public Map<String, Object> getBoard1List() {
+    public Map<String, Object> getBoard1List(Map<String, Object> param) {
         Map<String, Object> result = new HashMap<>();
         result.put("board1List", pracMapper.getBoard1List());
 
         return result;
     }
+
+    /**
+     * 페이징 함수
+     * @param
+     * @return
+     */
+    private Map<String, Object> paging(Map<String, Object> param){
+
+        int boardCnt = pracMapper.getBoard1Cnt(param);
+
+        return null;
+    }
+
 
     /**
      * 게시글 상세 조회

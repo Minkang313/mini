@@ -22,13 +22,13 @@ public class PracController {
      * 게시판1로 이동
      */
     @RequestMapping("/board1.do")
-    public String moveBoard1(@RequestParam(value = "msg", required = false) String msg, Model model){
+    public String moveBoard1(Model model, @RequestParam Map<String, Object> param){
 
-        Map<String, Object> board1Map = pracService.getBoard1List();
+        Map<String, Object> board1Map = pracService.getBoard1List(param);
         model.addAttribute("board1Map", board1Map);
 
-        if (msg != null) {
-            model.addAttribute("msg", msg);
+        if (param.get("msg") != null) {
+            model.addAttribute("msg", param.get("msg"));
         }
 
         return "prac/board1/board1";
