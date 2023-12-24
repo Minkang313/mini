@@ -13,8 +13,22 @@
             board.board1
         where
             use_yn = 'Y'
+        <choose>
+            <when test="searchKey == '제목' and searchVal != null and searchVal != ''">
+                AND
+                title like '%'||#{searchVal}||'%'
+            </when>
+            <when test="searchKey == '내용' and searchVal != null and searchVal != ''">
+                AND
+                content like '%'||#{searchVal}||'%'
+            </when>
+            <when test="searchKey == '전체' and searchVal != null and searchVal != ''">
+                AND
+                (title like '%'||#{searchVal}||'%' OR content like '%'||#{searchVal}||'%')
+            </when>
+        </choose>
         order by id DESC
-        limit 10 offset 0
+        limit 10 offset #{startRow}
     </select>
 
     <select id="getBoard1Cnt">

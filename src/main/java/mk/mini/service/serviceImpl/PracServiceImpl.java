@@ -20,7 +20,10 @@ public class PracServiceImpl implements PracService {
     @Override
     public Map<String, Object> getBoard1List(Map<String, Object> param) {
         Map<String, Object> result = new HashMap<>();
-        result.put("board1List", pracMapper.getBoard1List());
+        Map<String, Object> pageMap = paging(param);
+
+        result.put("board1List", pracMapper.getBoard1List(pageMap));
+        result.put("pageMap", pageMap);
 
         return result;
     }
@@ -32,9 +35,40 @@ public class PracServiceImpl implements PracService {
      */
     private Map<String, Object> paging(Map<String, Object> param){
 
-        int boardCnt = pracMapper.getBoard1Cnt(param);
+        Map<String, Object> resultMap = new HashMap<>();
 
-        return null;
+        int curPage = 0;
+        if (null == param.get("curPage")) {
+            curPage = 1;
+        } else {
+            curPage = (int) param.get("curPage");
+        }
+        int boardCnt = pracMapper.getBoard1Cnt(param);
+        int startRow = (curPage - 1) * 10;
+        int maxPage = (int) (double) (boardCnt / 10);
+        if (curPage > maxPage) {
+            curPage = maxPage;
+        }
+        if (curPage < 0) {
+            curPage = 1;
+        }
+        int endPage = (int) ((Math.ceil((double) curPage / 5 - 1) + 1 ) * 5);
+        if (endPage > maxPage) {
+            endPage = maxPage;
+        }
+        int startPage = (int) (Math.ceil((double) curPage / 5 - 1) * 5 + 1);
+        if (startPage < 1) {
+            startPage = 1;
+        }
+
+        resultMap.put("curPage", curPage);
+        resultMap.put("boardCnt", boardCnt);
+        resultMap.put("maxPage", maxPage);
+        resultMap.put("endPage", endPage);
+        resultMap.put("startPage", startPage);
+        resultMap.put("startRow", startRow);
+
+        return resultMap;
     }
 
 
