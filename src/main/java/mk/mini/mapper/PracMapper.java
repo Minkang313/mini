@@ -8,7 +8,7 @@ import java.util.Map;
 @Mapper
 public interface PracMapper {
 
-    List<Map<String, Object>> getBoard1List();
+    List<Map<String, Object>> getBoard1List(Map<String, Object> param);
 
     int getBoard1Cnt(Map<String, Object> param);
 
