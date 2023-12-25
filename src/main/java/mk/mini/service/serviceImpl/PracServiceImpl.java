@@ -5,6 +5,7 @@ import mk.mini.service.PracService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +45,7 @@ public class PracServiceImpl implements PracService {
             curPage = (int) param.get("curPage");
         }
         int boardCnt = pracMapper.getBoard1Cnt(param);
+        System.out.println("boardCnt: " + boardCnt);
         int startRow = (curPage - 1) * 10;
         int maxPage = (int) (double) (boardCnt / 10);
         if (curPage > maxPage) {

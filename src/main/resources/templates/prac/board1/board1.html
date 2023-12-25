@@ -33,6 +33,14 @@
                 </tr>
             </tbody>
         </table>
+        <div id="paging">
+            <a th:if="${board1Map.pageMap.startPage > 5}" th:href="@{/prac/board1.do(curPage=${board1Map.pageMap.startPage - 5})}" th:text="'&lt;'"></a>
+            <th:block th:each="num : ${#numbers.sequence(board1Map.pageMap.startPage, board1Map.pageMap.endPage)}">
+                <a th:if="${num != board1Map.pageMap.curPage}" th:href="@{/prac/board1.do(curPage=${num})}" th:text="${num}"></a>
+                <span th:if="${num == board1Map.pageMap.curPage}" th:text="${num}"></span>
+            </th:block>
+            <a th:if="${board1Map.pageMap.endPage < board1Map.pageMap.maxPage}" th:href="@{/prac/board1.do(curPage=${board1Map.pageMap.startPage + 5})}" th:text="'&gt;'"></a>
+        </div>
         <div style="margin-left: 200px;">
             <button th:onclick="|location.href='@{/prac/addBoard1.do}'|">작성</button>
         </div>
