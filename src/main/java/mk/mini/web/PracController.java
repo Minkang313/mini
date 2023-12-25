@@ -24,6 +24,7 @@ public class PracController {
     @RequestMapping("/board1.do")
     public String moveBoard1(Model model, @RequestParam Map<String, Object> param){
 
+//        param.put("curPage", curPage);
         Map<String, Object> board1Map = pracService.getBoard1List(param);
         model.addAttribute("board1Map", board1Map);
 

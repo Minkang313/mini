@@ -7,13 +7,20 @@
         table, tr, td, th {
             border: black solid 1px;
         }
-        tr{
+        tr, .pageBtn{
             cursor: pointer;
         }
     </style>
 </head>
 <body>
     <h1>게시판 연습 1</h1>
+    <select id="searchKey">
+        <option selected>전체</option>
+        <option>제목</option>
+        <option>내용</option>
+    </select>
+    <input type="text" placeholder="검색" id="searchVal">
+    <button th:onclick="clickSearch()">검색</button>
     <div>
         <table>
             <thead>
@@ -33,6 +40,14 @@
                 </tr>
             </tbody>
         </table>
+        <div id="paging">
+        <span th:if="${board1Map.pageMap.startPage > 5}" th:attr="onclick=|paging(${board1Map.pageMap.startPage - 5})|" th:text="'&lt;'" class="pageBtn"></span>
+            <th:block th:each="num : ${#numbers.sequence(board1Map.pageMap.startPage, board1Map.pageMap.endPage)}">
+                <span th:if="${num != board1Map.pageMap.curPage}" th:attr="onclick=|paging(${num})|" th:text="${num}" class="pageBtn"></span>
+                <span th:if="${num == board1Map.pageMap.curPage}" th:text="${num}" style="color: blue"></span>
+            </th:block>
+            <span th:if="${board1Map.pageMap.endPage < board1Map.pageMap.maxPage}" th:attr="onclick=|paging(${board1Map.pageMap.startPage + 5})|" th:text="'&gt;'" class="pageBtn"></span>
+        </div>
         <div style="margin-left: 200px;">
             <button th:onclick="|location.href='@{/prac/addBoard1.do}'|">작성</button>
         </div>
@@ -45,6 +60,16 @@
                 alert(msg)
             }
         })
+
+        const paging = (page) => {
+            location.href = `/prac/board1.do?curPage=${page}`;
+        }
+
+        const clickSearch = () => {
+            let searchKey = document.getElementById("searchKey").value;
+            let searchVal = document.getElementById("searchVal").value;
+            location.href = `/prac/board1.do?searchKey=${searchKey}&searchVal=${searchVal}`;
+        }
     </script>
 </body>
 </html>
