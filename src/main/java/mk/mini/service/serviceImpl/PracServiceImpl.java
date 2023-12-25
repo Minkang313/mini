@@ -22,8 +22,8 @@ public class PracServiceImpl implements PracService {
     public Map<String, Object> getBoard1List(Map<String, Object> param) {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> pageMap = paging(param);
-
-        result.put("board1List", pracMapper.getBoard1List(pageMap));
+        param.put("startRow", pageMap.get("startRow"));
+        result.put("board1List", pracMapper.getBoard1List(param));
         result.put("pageMap", pageMap);
 
         return result;
@@ -42,12 +42,12 @@ public class PracServiceImpl implements PracService {
         if (null == param.get("curPage")) {
             curPage = 1;
         } else {
-            curPage = (int) param.get("curPage");
+            curPage = Integer.parseInt(param.get("curPage").toString());
         }
         int boardCnt = pracMapper.getBoard1Cnt(param);
         System.out.println("boardCnt: " + boardCnt);
         int startRow = (curPage - 1) * 10;
-        int maxPage = (int) (double) (boardCnt / 10);
+        int maxPage = (int) Math.ceil((double) boardCnt / 10);
         if (curPage > maxPage) {
             curPage = maxPage;
         }

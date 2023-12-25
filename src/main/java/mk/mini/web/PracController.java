@@ -22,9 +22,9 @@ public class PracController {
      * 게시판1로 이동
      */
     @RequestMapping("/board1.do")
-    public String moveBoard1(Model model, @RequestParam Map<String, Object> param, @RequestParam(value = "curPage", required = false, defaultValue = "1")int curPage){
+    public String moveBoard1(Model model, @RequestParam Map<String, Object> param){
 
-        param.put("curPage", curPage);
+//        param.put("curPage", curPage);
         Map<String, Object> board1Map = pracService.getBoard1List(param);
         model.addAttribute("board1Map", board1Map);
 
