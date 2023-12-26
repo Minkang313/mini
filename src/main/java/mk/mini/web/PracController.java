@@ -26,6 +26,12 @@ public class PracController {
 
 //        param.put("curPage", curPage);
         Map<String, Object> board1Map = pracService.getBoard1List(param);
+        String searchKey = (String) param.get("searchKey");
+        String searchVal = (String) param.get("searchVal");
+        if (null != searchKey && null != searchVal) {
+            model.addAttribute("searchKey", searchKey);
+            model.addAttribute("searchVal", searchVal);
+        }
         model.addAttribute("board1Map", board1Map);
 
         if (param.get("msg") != null) {

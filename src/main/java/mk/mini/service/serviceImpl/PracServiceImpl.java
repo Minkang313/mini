@@ -38,25 +38,25 @@ public class PracServiceImpl implements PracService {
 
         Map<String, Object> resultMap = new HashMap<>();
 
-        int curPage = 0;
-        if (null == param.get("curPage")) {
-            curPage = 1;
-        } else {
+        int curPage = 1;
+        if (null != param.get("curPage")) {
             curPage = Integer.parseInt(param.get("curPage").toString());
         }
         int boardCnt = pracMapper.getBoard1Cnt(param);
-        System.out.println("boardCnt: " + boardCnt);
         int startRow = (curPage - 1) * 10;
         int maxPage = (int) Math.ceil((double) boardCnt / 10);
         if (curPage > maxPage) {
             curPage = maxPage;
         }
-        if (curPage < 0) {
+        if (curPage < 1) {
             curPage = 1;
         }
         int endPage = (int) ((Math.ceil((double) curPage / 5 - 1) + 1 ) * 5);
         if (endPage > maxPage) {
             endPage = maxPage;
+        }
+        if (endPage < 1) {
+            endPage = 1;
         }
         int startPage = (int) (Math.ceil((double) curPage / 5 - 1) * 5 + 1);
         if (startPage < 1) {

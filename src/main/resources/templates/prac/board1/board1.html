@@ -61,13 +61,27 @@
             }
         })
 
+        let saveSearchKey = "[[${searchKey}]]";
+        let saveSearchVal = "[[${searchVal}]]";
+
+
+        if (saveSearchKey !== '' && saveSearchKey !== undefined && saveSearchVal !== '' && saveSearchVal !== undefined) {
+            document.getElementById('searchKey').value = saveSearchKey;
+            document.getElementById('searchVal').value = saveSearchVal;
+        }
+
         const paging = (page) => {
-            location.href = `/prac/board1.do?curPage=${page}`;
+            let url = `/prac/board1.do?curPage=${page}`;
+            if (saveSearchKey !== '' && saveSearchKey !== undefined && saveSearchVal !== '' && saveSearchVal !== undefined) {
+                url += `&searchKey=${saveSearchKey}&searchVal=${saveSearchVal}`;
+            }
+            location.href = url;
         }
 
         const clickSearch = () => {
             let searchKey = document.getElementById("searchKey").value;
             let searchVal = document.getElementById("searchVal").value;
+
             location.href = `/prac/board1.do?searchKey=${searchKey}&searchVal=${searchVal}`;
         }
     </script>
