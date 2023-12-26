@@ -19,7 +19,7 @@
         <option>제목</option>
         <option>내용</option>
     </select>
-    <input type="text" placeholder="검색" id="searchVal">
+    <input type="text" placeholder="검색" id="searchVal" th:onkeyup="enterSearch(event)">
     <button th:onclick="clickSearch()">검색</button>
     <div>
         <table>
@@ -59,17 +59,39 @@
             if (msg !== '') {
                 alert(msg)
             }
+
         })
 
+        let saveSearchKey = "[[${searchKey}]]";
+        let saveSearchVal = "[[${searchVal}]]";
+
+
+        if (saveSearchKey !== '' && saveSearchKey !== undefined && saveSearchVal !== '' && saveSearchVal !== undefined) {
+            document.getElementById('searchKey').value = saveSearchKey;
+            document.getElementById('searchVal').value = saveSearchVal;
+        }
+
         const paging = (page) => {
-            location.href = `/prac/board1.do?curPage=${page}`;
+            let url = `/prac/board1.do?curPage=${page}`;
+            if (saveSearchKey !== '' && saveSearchKey !== undefined && saveSearchVal !== '' && saveSearchVal !== undefined) {
+                url += `&searchKey=${saveSearchKey}&searchVal=${saveSearchVal}`;
+            }
+            location.href = url;
         }
 
         const clickSearch = () => {
             let searchKey = document.getElementById("searchKey").value;
             let searchVal = document.getElementById("searchVal").value;
+
             location.href = `/prac/board1.do?searchKey=${searchKey}&searchVal=${searchVal}`;
         }
+
+        const enterSearch = (event) => {
+            if (event.key === 'Enter') {
+                clickSearch();
+            }
+        }
+
     </script>
 </body>
 </html>
